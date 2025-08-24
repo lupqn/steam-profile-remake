@@ -46,16 +46,24 @@
 
         <div class="flex flex-col space-y-8 mt-36">
 
-            <div>
+            <div class="flex flex-col space-y-4 items-start">
+
+                <button id="steambutton"
+                        onclick="window.open('https://steamcommunity.com/id/Lupqn/')"
+                        class="text-white text-xl font-bold  mb-6
+               hover:text-gray-300 hover:scale-105
+               transition-transform duration-200 ease-in-out cursor-pointer ">Steam
+                </button>
+
                 <button id="aboutbutton" class="text-white text-xl font-bold
                hover:text-gray-300 hover:scale-105
-               transition-transform duration-200 ease-in-out cursor-pointer">
+               transition-transform duration-200 ease-in-out cursor-pointer" onclick="togglemodal('aboutwindow')">
                     About Me
                 </button>
-                <div id="aboutwindow" class="hidden fixed top-1/4 left-1/2 -translate-x-1/2 bg-gray-900 text-gray-300 rounded-lg shadow-lg w-[500px] p-6 z-50">
+                <div id="aboutwindow" class=" fixed top-1/4 left-1/2 -translate-x-1/2 bg-gray-900 text-gray-300 rounded-lg shadow-lg w-[500px] p-6 transition-all opacity-0 scale-90 pointer-events-none z-50">
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-white text-xl font-bold">About Me</h3>
-                        <button onclick="document.getElementById('aboutwindow').classList.add('hidden')" class="text-gray-400 hover:text-white">✕</button>
+                        <button onclick="togglemodal('aboutwindow')">✕</button>
                     </div>
                     <div class="text-left text-gray-300 space-y-2">
                         <p>Hi👋 My name is Louis</p>
@@ -83,14 +91,14 @@
             <div>
                 <button id="socialsbutton" class="text-white text-xl font-bold
                hover:text-gray-300 hover:scale-105
-               transition-transform duration-200 ease-in-out cursor-pointer">
+               transition-transform duration-200 ease-in-out cursor-pointer" onclick="togglemodal('socialswindow')">
                     Socials
                 </button>
 
-                <div id="socialswindow" class="hidden fixed top-1/4 left-1/2 -translate-x-1/2 bg-gray-900 text-gray-300 rounded-lg shadow-lg w-[300px] p-6 z-50 flex flex-col items-start">
-                    <div class="flex justify-between items-center mb-4 w-full">
+                <div id="socialswindow" class=" fixed top-1/4 left-1/2 -translate-x-1/2 bg-gray-900 text-gray-300 rounded-lg shadow-lg w-[300px] p-6  flex flex-col items-start transition-all opacity-0 scale-90 pointer-events-none z-50">
+                    <div class="flex justify-between items-center mb-4 w-full ">
                         <h3 class="text-white text-xl font-bold">Socials</h3>
-                        <button onclick="document.getElementById('socialswindow').classList.add('hidden')" class="text-gray-400 hover:text-white">✕</button>
+                        <button onclick="togglemodal('socialswindow')">✕</button>
                     </div>
                     <div class="flex space-x-4 ">
                         <a href="https://discordapp.com/users/623856022796107776/" target="_blank">
@@ -107,16 +115,23 @@
         </div>
 
         <script>
-            document.getElementById('aboutbutton').addEventListener('click', () => {
-                document.getElementById('aboutwindow').classList.toggle('hidden');
-            });
-            document.getElementById('socialsbutton').addEventListener('click', () => {
-                document.getElementById('socialswindow').classList.toggle('hidden');
-            });
+            function togglemodal(id) {
+                const modals = ['aboutwindow', 'socialswindow'];
+                modals.forEach(modalId => {
+                    const modal = document.getElementById(modalId);
+                    if (modalId === id) {
+                        modal.classList.toggle('opacity-0');
+                        modal.classList.toggle('scale-90');
+                        modal.classList.toggle('pointer-events-none');
+                    } else {
+                        modal.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
+                    }
+                });
+            }
         </script>
 
-    </div>
 
+    </div>
 </div>
 
 
